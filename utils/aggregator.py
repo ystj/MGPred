@@ -15,7 +15,7 @@ class aggregator(nn.Module):
     aggregator: for aggregating feature of neighbors
     """
     def __init__(self, drug_feature, side_feature, adj, embed_dim, weight_decay = 0.0005, droprate = 0.5,
-                    cuda = "cpu", is_drug_part = True):
+                    cuda = "cpu", is_user_part = True):
         super(aggregator, self).__init__()
 
         self.drugfeature = drug_feature
@@ -25,7 +25,7 @@ class aggregator(nn.Module):
         self.weight_decay = weight_decay
         self.droprate = droprate
         self.device = cuda
-        self.is_drug = is_drug_part
+        self.is_drug = is_user_part
 
         self.u_layer = L0Dense(self.drugfeature.embedding_dim, self.embed_dim,
                                 weight_decay = self.weight_decay, droprate = self.droprate)
